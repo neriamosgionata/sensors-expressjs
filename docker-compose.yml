@@ -1,0 +1,23 @@
+version: '3'
+services:
+  mongodb:
+    image: 'mongo'
+    container_name: 'mongodb'
+    environment:
+      - 'MONGO_INITDB_DATABASE=${DB_NAME}'
+      - 'MONGO_INITDB_ROOT_USERNAME=${DB_USER}'
+      - 'MONGO_INITDB_ROOT_PASSWORD=${DB_PASSWORD}'
+    volumes:
+      - mongodb:/data/db
+    ports:
+      - '27017-27019:27017-27019'
+    networks:
+      - default
+
+volumes:
+  mongodb:
+    driver: local
+
+networks:
+  default:
+    driver: bridge
