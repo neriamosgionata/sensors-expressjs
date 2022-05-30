@@ -1,31 +1,13 @@
-import {Request, Response, Router} from 'express';
-import AuthService from '../../services/AuthService';
+import {Router} from 'express';
+import AuthController from "../controllers/AuthController";
 
 // eslint-disable-next-line new-cap
 const AuthRouter: Router = Router();
 
-AuthRouter.post('/login', (req: Request, res: Response) => {
-    const {username, password} = req.params;
+AuthRouter.post('/login', AuthController.login);
 
-    AuthService.login(username, password)
-        .then((token) => {
-            res.status(200).send({token: token});
-        })
-        .catch((err) => {
-            res.status(400).send({error: err});
-        });
-});
+AuthRouter.post('/logout', AuthController.logout);
 
-AuthRouter.post('/register', (req: Request, res: Response) => {
-    const {username, password} = req.params;
-
-    AuthService.register(username, password)
-        .then((token) => {
-            res.status(200).send({token: token});
-        })
-        .catch((err) => {
-            res.status(400).send({error: err});
-        });
-});
+AuthRouter.post('/register', AuthController.register);
 
 export default AuthRouter;

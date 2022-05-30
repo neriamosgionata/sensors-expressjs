@@ -4,6 +4,7 @@ enum ModelEnum {
     SESSION = 'Session',
     USER = 'User',
     ROLE = 'Role',
+    PERMISSION = 'Permission',
     USER_ROLE = 'UserRole',
 }
 

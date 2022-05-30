@@ -44,8 +44,8 @@ server = server.listen(Constants.APP_PORT, () => {
 
 //SOCKET
 const customEvents = [
-    SensorsService.newSensorEvent(),
-    SensorsService.newSensorReadingEvent()
+    SensorsService.registerNewSensorEvent(),
+    SensorsService.registerNewSensorReadingEvent()
 ];
 app.set(SingletonEnum.SOCKET, new SocketService(server, customEvents));
 

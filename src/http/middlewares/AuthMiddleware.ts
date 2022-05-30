@@ -2,7 +2,9 @@ import {Request, Response} from 'express';
 import AuthService from '../../services/AuthService';
 
 const AuthMiddleware = (req: Request, res: Response, next: Function) => {
-    const token = req.header('authorization');
+    let token = req.header('authorization');
+
+    token = token?.replace('Bearer ', '');
 
     AuthService.getUserFromToken(token)
         .then((user) => {
@@ -13,7 +15,7 @@ const AuthMiddleware = (req: Request, res: Response, next: Function) => {
             next();
         })
         .catch((err) => {
-            res.status(403).send({error: 'User unauthenticated'});
+            res.status(403).send({message: 'User unauthenticated', error: err});
         });
 };
 

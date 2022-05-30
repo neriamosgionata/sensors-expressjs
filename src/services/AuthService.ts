@@ -5,11 +5,13 @@ import fs from 'fs';
 import Session from '../database/models/Auth/Session';
 import Constants from '../constants/Constants';
 import {passwordStrength} from 'check-password-strength';
+import IUserSchema from "../database/schemas/IUserSchema";
+import {Document, Types} from "mongoose";
 
 export default class AuthService {
     private static standardSalt = 10;
 
-    public static async register(username: string, password: string): Promise<string> {
+    static async register(username: string, password: string): Promise<string> {
         if (!username || !password) {
             throw new Error('Bad request');
         }
@@ -50,7 +52,7 @@ export default class AuthService {
         throw new Error('Username already present');
     }
 
-    public static async login(username: string, password: string): Promise<string> {
+    static async login(username: string, password: string): Promise<string> {
         if (!username || !password) {
             throw new Error('Bad request');
         }
@@ -81,10 +83,10 @@ export default class AuthService {
             return token;
         }
 
-        throw new Error('Username already present');
+        throw new Error('Username is already logged in');
     }
 
-    public static async getUserFromToken(token?: string) {
+    static async getUserFromToken(token?: string): Promise<(Document & IUserSchema & { _id: Types.ObjectId }) | null> {
         if (!token) {
             throw new Error('Token is not present');
         }
@@ -95,6 +97,18 @@ export default class AuthService {
 
         if (auth) {
             return await User.findById(auth.userId).exec();
+        }
+
+        throw new Error('User is not logged in');
+    }
+
+    static async logout(token: string): Promise<void> {
+        const done = await Session.deleteOne({
+            token: token,
+        }).exec();
+
+        if (done.deletedCount > 0) {
+            return;
         }
 
         throw new Error('User is not logged in');

@@ -21,7 +21,7 @@ export default class MongoDBService {
         const url = 'mongodb://' + auth + '@' + dbPath + '?authMechanism=DEFAULT&authSource=admin';
 
         mongoose.connect(url)
-            .then((db: typeof mongoose) => {
+            .then((db: Mongoose) => {
                 console.log('[MongoDB Service]: Connected to MongoDB on ' + url);
                 this.dbConnection = db;
             })

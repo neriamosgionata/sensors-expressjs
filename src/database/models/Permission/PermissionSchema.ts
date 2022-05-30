@@ -1,7 +1,7 @@
 import {Schema} from 'mongoose';
 import IRoleSchema from "../../schemas/IRoleSchema";
 
-const RoleSchema = new Schema<IRoleSchema>(
+const PermissionSchema = new Schema<IRoleSchema>(
     {
         name: {type: String, required: true, unique: true},
     },
@@ -10,5 +10,5 @@ const RoleSchema = new Schema<IRoleSchema>(
     }
 );
 
-export default RoleSchema;
+export default PermissionSchema;
 

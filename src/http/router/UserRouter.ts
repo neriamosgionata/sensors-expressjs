@@ -1,31 +1,13 @@
-import {Request, Response, Router} from 'express';
-import UsersService from "../../services/UsersService";
+import {Router} from 'express';
+import UserController from "../controllers/UserController";
 
 // eslint-disable-next-line new-cap
 const UserRouter: Router = Router();
 
-UserRouter.get('/', (req: Request, res: Response) => {
-    UsersService.getUsersIndex().then((results) => {
-        res.status(200).send({data: results})
-    }).catch(() => {
-        res.status(403).send({data: null})
-    });
-});
+UserRouter.get('/', UserController.index);
 
-UserRouter.get('/:userId', (req: Request, res: Response) => {
-    UsersService.getUserById(req.params.userId).then((results) => {
-        res.status(200).send({data: results})
-    }).catch(() => {
-        res.status(403).send({data: null})
-    });
-});
+UserRouter.get('/:userId', UserController.show);
 
-UserRouter.delete('/:userId', (req: Request, res: Response) => {
-    UsersService.deleteUser(req.params.userId).then((results) => {
-        res.status(200).send({data: results})
-    }).catch(() => {
-        res.status(403).send({data: null})
-    });
-});
+UserRouter.delete('/:userId', UserController.delete);
 
 export default UserRouter;

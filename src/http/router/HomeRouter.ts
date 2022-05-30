@@ -1,10 +1,9 @@
-import {Request, Response, Router} from 'express';
+import {Router} from 'express';
+import HomeController from "../controllers/HomeController";
 
 // eslint-disable-next-line new-cap
 const HomeRouter: Router = Router();
 
-HomeRouter.get('/', (req: Request, res: Response) => {
-    res.send('Home');
-});
+HomeRouter.get('/', HomeController.home);
 
 export default HomeRouter;

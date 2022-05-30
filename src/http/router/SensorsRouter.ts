@@ -1,18 +1,13 @@
-import {Request, Response, Router} from 'express';
+import {Router} from 'express';
+import SensorController from "../controllers/SensorController";
 
 // eslint-disable-next-line new-cap
 const SensorsRouter: Router = Router();
 
-SensorsRouter.get('/', (req: Request, res: Response) => {
-    // TODO INDEX for SENSORS
-});
+SensorsRouter.get('/', SensorController.index);
 
-SensorsRouter.get('/:sensorId', (req: Request, res: Response) => {
-    // TODO SHOW for SENSORS
-});
+SensorsRouter.get('/:sensorId', SensorController.show);
 
-SensorsRouter.delete('/:sensorId', (req: Request, res: Response) => {
-    // TODO SHOW for SENSORS
-});
+SensorsRouter.delete('/:sensorId', SensorController.delete);
 
 export default SensorsRouter;

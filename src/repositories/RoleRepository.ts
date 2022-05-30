@@ -5,7 +5,7 @@ import IUserSchema from "../database/schemas/IUserSchema";
 import User from "../database/models/User/User";
 import Role from "../database/models/Role/Role";
 
-export default class RolePermissionService {
+export default class RoleRepository {
     static async syncRoles(user: { _id: ObjectId } | IUserSchema, ...roles: IRoleSchema[] | { _id: ObjectId }[]) {
         let userModel: any;
 
