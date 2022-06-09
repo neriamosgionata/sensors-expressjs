@@ -4,7 +4,6 @@
     "es2021": true
   },
   "extends": [
-    "plugin:react/recommended",
     "google"
   ],
   "parser": "@typescript-eslint/parser",
@@ -16,7 +15,6 @@
     "sourceType": "module"
   },
   "plugins": [
-    "react",
     "@typescript-eslint"
   ],
   "rules": {
@@ -27,10 +25,11 @@
     "max-len": 0,
     "require-jsdoc": 0,
     "no-unused-vars": 1,
-    "quotes": 1,
+    "quotes": 0,
     "eol-last": 1,
     "comma-dangle": 1,
     "no-trailing-spaces": 1,
-    "spaced-comment" : 1
+    "spaced-comment" : 1,
+    "semi": 0
   }
 }

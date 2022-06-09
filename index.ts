@@ -41,14 +41,12 @@ server = server.listen(Constants.APP_PORT, () => {
     console.log(`[server]: Server is running at http://localhost:${Constants.APP_PORT}`);
 })
 
-
 //SOCKET
 const customEvents = [
     SensorsService.registerNewSensorEvent(),
     SensorsService.registerNewSensorReadingEvent()
 ];
 app.set(SingletonEnum.SOCKET, new SocketService(server, customEvents));
-
 
 //DB
 app.set(SingletonEnum.MONGO_DB, new MongoDBService());
