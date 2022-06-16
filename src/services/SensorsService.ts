@@ -1,5 +1,6 @@
 import ISocketEvent from "../http/socket/ISocketEvent";
 import SensorsRepository from "../repositories/SensorsRepository";
+import SensorsReadingRepository from "../repositories/SensorsReadingRepository";
 
 export default class SensorsService {
     static registerNewSensorEvent() {
@@ -17,7 +18,7 @@ export default class SensorsService {
 
                     console.log('[Sensor service] Done registering sensor ' + id);
                 };
-            }
+            },
         } as ISocketEvent;
     }
 
@@ -34,12 +35,12 @@ export default class SensorsService {
 
                     socket.emit('newSensorReadingDone', {
                         id: id,
-                        list: await SensorsRepository.getSensorReadingBySensorId(args.sensor_id)
+                        list: await SensorsReadingRepository.getSensorReadingBySensorId(args.sensor_id),
                     });
 
                     console.log('[Sensor service] Done saving sensor data ' + id);
                 };
-            }
+            },
         } as ISocketEvent;
     }
 }

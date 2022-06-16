@@ -26,7 +26,7 @@
     "require-jsdoc": 0,
     "no-unused-vars": 1,
     "quotes": 0,
-    "eol-last": 1,
+    "eol-last": 0,
     "comma-dangle": 1,
     "no-trailing-spaces": 1,
     "spaced-comment" : 1,

@@ -1,6 +1,6 @@
 enum ModelEnum {
     SENSOR = 'Sensor',
-    SENSOR_DATA = 'SensorData',
+    SENSOR_READING = 'SensorReading',
     SESSION = 'Session',
     USER = 'User',
     ROLE = 'Role',

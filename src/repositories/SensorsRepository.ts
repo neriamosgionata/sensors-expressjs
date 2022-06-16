@@ -2,8 +2,8 @@ import Sensor from '../database/models/Sensor/Sensor';
 import {Types} from 'mongoose';
 import SensorTypeEnum from '../enums/SensorTypeEnum';
 import ISensorSchema from '../database/schemas/ISensorSchema';
-import SensorData from "../database/models/SensorData/SensorData";
-import ISensorDataSchema from "../database/schemas/ISensorDataSchema";
+import SensorReading from "../database/models/SensorData/SensorReading";
+import ISensorReadingSchema from "../database/schemas/ISensorReadingSchema";
 import FilterService from "../services/FilterService";
 import {Request} from "express";
 
@@ -20,20 +20,14 @@ export default class SensorsRepository {
     }
 
     static async saveNewSensorData(sensorId: string, reading: string, datetime: number, sensorType: number) {
-        const sensorData = new SensorData({
+        const sensorReading = new SensorReading({
             sensorId: sensorId,
             reading: reading,
             datetime: datetime,
-            sensorType: sensorType
+            sensorType: sensorType,
         });
-        await sensorData.save();
-        return sensorData._id;
-    }
-
-    static async getSensorReadingBySensorId(sensorId: string): Promise<ISensorDataSchema[]> {
-        return await SensorData.find({
-            sensorId: sensorId
-        }).exec();
+        await sensorReading.save();
+        return sensorReading._id;
     }
 
     static async getSensorById(_id: string): Promise<ISensorSchema | null> {

@@ -8,6 +8,4 @@ SensorsRouter.get('/', SensorController.index);
 
 SensorsRouter.get('/:sensorId', SensorController.show);
 
-SensorsRouter.delete('/:sensorId', SensorController.delete);
-
 export default SensorsRouter;

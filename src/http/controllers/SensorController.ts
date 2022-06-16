@@ -1,16 +1,14 @@
 import {Request, Response} from "express";
+import SensorsRepository from "../../repositories/SensorsRepository";
 
 export default class SensorController {
     static index(req: Request, res: Response): void {
-        // TODO INDEX for SENSOR DATA
+        const index = SensorsRepository.getSensorIndex(req);
+        res.status(200).send({data: index});
     }
 
     static show(req: Request, res: Response): void {
-        // TODO SHOW for SENSOR DATA
+        const index = SensorsRepository.getSensorById(req.params.sensorId);
+        res.status(200).send({data: index});
     }
-
-    static delete(req: Request, res: Response): void {
-        // TODO DELETE for SENSOR DATA
-    }
-
 }
